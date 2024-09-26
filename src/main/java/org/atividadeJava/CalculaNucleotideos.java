@@ -1,3 +1,6 @@
+/// Classe CalculaNucleotideos para calcular a quantidade de nucleotídeos em uma sequência de DNA
+/// Alunos: Gabriel Antunes Cunha, Wender Alves da Silva
+
 package org.atividadeJava;
 
 import java.io.*;
@@ -10,7 +13,7 @@ public class CalculaNucleotideos {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String linha = reader.readLine();
             if (linha == null || linha.isEmpty()) {
-                return null; // Arquivo vazio ou não encontrado
+                return resultado; // Arquivo vazio retorna array zerado
             }
 
             int totalCaracteres = linha.length();
@@ -28,7 +31,7 @@ public class CalculaNucleotideos {
 
             resultado[4] = erros;
             if ((double) erros / totalCaracteres > 0.1) {
-                return null; // Mais de 10% de caracteres inválidos
+                return null; // Mais de 10% de caracteres inválidos retorna array zerado
             }
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("Arquivo não encontrado: " + filePath);

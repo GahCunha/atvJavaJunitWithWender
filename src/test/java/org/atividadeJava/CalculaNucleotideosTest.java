@@ -1,3 +1,6 @@
+/// Classe de testes para a classe CalculaNucleotideos
+/// Alunos: Gabriel Antunes Cunha, Wender Alves da Silva
+
 package org.atividadeJava;
 
 import org.junit.jupiter.api.DisplayName;
@@ -65,10 +68,10 @@ class CalculaNucleotideosTest {
     void testSequenciaInvalidaComErrosElevados() throws IOException {
         // Escreve uma sequência com mais de 10% de caracteres inválidos no arquivo
         try (FileWriter writer = new FileWriter(tempFile)) {
-            writer.write("ABC TEM FALHA"); // 13 caracteres, 4 inválidos (~30.77%)
+            writer.write("ABC TEM FALHAA"); // 13 caracteres, 4 inválidos
         }
 
-        // Chama o método calculaNucleotideos
+        // Chama o metodo calculaNucleotideos
         CalculaNucleotideos calculaNucleotideos = new CalculaNucleotideos();
         int[] resultado = calculaNucleotideos.calculaNucleotideos(tempFile.getPath());
 
@@ -84,7 +87,9 @@ class CalculaNucleotideosTest {
         CalculaNucleotideos calculaNucleotideos = new CalculaNucleotideos();
         int[] resultado = calculaNucleotideos.calculaNucleotideos(tempFile.getPath());
 
-        assertNull(resultado);
+        // Verifica se o resultado é o esperado
+        int[] esperado = {0, 0, 0, 0, 0};
+        assertArrayEquals(esperado, resultado);
     }
 
     @Test
@@ -93,7 +98,7 @@ class CalculaNucleotideosTest {
         // Define um caminho de arquivo inexistente
         String caminhoInexistente = "caminho/inexistente.txt";
 
-        // Chama o método calculaNucleotideos e espera uma exceção
+        // Chama o metodo calculaNucleotideos e espera uma exceção
         CalculaNucleotideos calculaNucleotideos = new CalculaNucleotideos();
         FileNotFoundException exception = assertThrows(FileNotFoundException.class, () -> calculaNucleotideos.calculaNucleotideos(caminhoInexistente));
 
